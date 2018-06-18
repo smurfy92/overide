@@ -1,0 +1,68 @@
+
+int auth(char *ptr, char *ptr2)
+{
+
+	int l = strcspn(ptr, "\n");
+	ptr[l] = 0;
+	if (strnlen(ptr, 32) < 5)
+		return (1);
+	if (ptrace(0, 0, 1, 0) == -1)
+	{
+		puts("\033[32m.---------------------------.");
+		puts("\033[31m| !! TAMPERING DETECTED !!  |");
+		puts("\033[32m'---------------------------'");
+		return (1);
+	}
+	char c = ptr[3];
+	int tofind = c ^ 0x1337 + 0x5eeded;
+	int i = 0;
+	while (ptr[i])
+	{
+		if (ptr[i] < 31)
+			return (1);
+		int first = ptr[i] ^ tofind;
+
+		int second = first * 2284010283;
+		second = second & 0xFFFFFFFF00000000;
+
+		int third = first - second;
+		third = third / 2;
+		third = third + second;
+		third = third / 1024;
+		third = third * 1337;
+		tofind = first - third;
+
+		i++;
+	}
+	if (tofind == ptr2)
+		return (0);
+	return (1);
+}
+
+int main(void)
+{
+	char ptr[32];
+	char ptr2[36];
+	int ret;
+
+	puts("***********************************");
+	puts("*\t\tlevel06\t\t  *");
+	puts("***********************************");
+	printf("-> Enter Login:");
+	ptr = fgets(ptr,32,stdin);
+	puts("***********************************");
+	puts("***** NEW ACCOUNT DETECTED ********");
+	puts("***********************************");
+	scanf("%u", ptr2);
+	if (auth(ptr, ptr2) == 0)
+	{
+		puts("Authenticated!");
+		system("/bin/sh");
+		ret = 0;
+	}
+	else
+		ret = 1;
+	if (overflow detected)
+		stack_chk_fail();
+	return (ret);
+}

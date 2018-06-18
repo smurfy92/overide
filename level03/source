@@ -1,0 +1,107 @@
+void decrypt(unisgned int pass)
+{
+	unsigned int a = 1971092817;
+	unsigned int b = 1734767456;
+	unsigned int c = 2070311806;
+	unsigned int d = 862026877;
+	unsigned int e = 0;
+	int			 i = -1;
+	char		 *tmp;
+
+	while (a[++i]) {
+		tmp = (char*)&a + i;
+		*tmp = (int)*tmp ^ pass;
+	}
+	i = -1;
+	while (b[++i]) {
+		tmp = (char*)&b + i;
+		*tmp = (int)*tmp ^ pass;
+	}
+	i = -1;
+	while (c[++i]) {
+		tmp = (char*)&c + i;
+		*tmp = (int)*tmp ^ pass;
+	}
+	i = -1;
+	while (d[++i]) {
+		tmp = (char*)&d + i;
+		*tmp = (int)*tmp ^ pass;
+	}
+	if (strncmp((char*)&tmp, "Congratulations!", 17) == 0)
+		system("/bin/sh");
+	else
+		puts("\nInvalid Password")
+}
+
+void	test(unsigned int nb, unsigned int pass)
+{
+	pass = nb - pass;
+
+	if (pass <= 21)
+	{
+		pass *= 4;
+		pass += 134515184;
+		switch (pass)
+		{
+			case 134514555:
+				decrypt(pass);
+				break;
+			case 134514555 + 16 * 1:
+				decrypt(pass);
+				break;
+			case 134514555 + 16 * 2:
+				decrypt(pass);
+				break;
+			case 134514555 + 16 * 3:
+				decrypt(pass);
+				break;
+			case 134514555 + 16 * 4:
+				decrypt(pass);
+				break;
+			case 134514555 + 16 * 5:
+				decrypt(pass);
+				break;
+			case 134514555 + 16 * 6:
+				decrypt(pass);
+				break;
+			case 134514555 + 16 * 7:
+				decrypt(pass);
+				break;
+			case 134514555 + 16 * 8:
+				decrypt(pass);
+				break;
+			case 134514555 + 16 * 9:
+				decrypt(pass);
+				break;
+			case 134514555 + 16 * 10:
+				decrypt(pass);
+				break;
+			case 134514555 + 16 * 11:
+				decrypt(pass);
+				break;
+			case 134514555 + 16 * 12:
+				decrypt(pass);
+				break;
+			case 134514555 + 16 * 13:
+				decrypt(pass);
+				break;
+			default:
+				decrypt(rand());
+				break;
+		}
+	}
+}
+
+
+int	main(int argc, char **argv)
+{
+	char *buf;
+	srand(time(0));
+	puts("***********************************");
+	puts("\t\tlevel03\t\t**");
+	puts("***********************************");
+	printf("Password:");
+	scanf("%d", &buf);
+	test(322424845, (unsigned int)password);
+	return (0);
+}

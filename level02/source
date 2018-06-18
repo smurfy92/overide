@@ -1,0 +1,47 @@
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+int main(void)
+{
+	FILE *f;
+	void *ptr;
+	char *username;
+	char *password;
+
+	if ((f = fopen("/home/users/level03/.pass", "r")) == NULL)
+	{
+		fwrite("ERROR: failed to open password file\n", 36, 1, stderr);
+		exit(1);
+	}
+	size_t t = fread(ptr, 41 ,1, f);
+	strcspn(ptr, "\n");
+	if (t != 41)
+	{
+		fwrite("ERROR: failed to read password file\n", 36, 1, stderr);
+		fwrite("ERROR: failed to read password file\n", 36, 1, stderr);
+		exit(1);
+	}
+	fclose(f);
+	puts("===== [ Secure Access System v1.0 ] =====");
+	puts("/***************************************\\");
+	puts("| You must login to access this system. |");
+	puts("\\***************************************/");
+	printf("--[ Username: ");
+	username = fgets(username, 100, stdin);
+	strcspn(username, "\n");
+	printf("--[ Password:");
+	password = fgets(password, 100, stdin);
+	strcspn(password, "\n");
+	puts("*****************************************");
+	if (strncmp(ptr, password, 41) == 0)
+	{
+		printf("Greetings, %s!\n", username);
+		system("/bin/sh");
+		return (0);
+	}
+	printf(username); // faille
+	puts(" does not have access!");
+	exit(1);
+}

