@@ -1,7 +1,7 @@
 int main(void)
 {
 	pid_t pid = fork();
-	char 	*str;
+	char 	str[152];
 	bzero(str, 32);
 	int     ptrace = 0;
 	int     stat = 0;
